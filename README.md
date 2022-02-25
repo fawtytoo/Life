@@ -17,5 +17,8 @@ Enter to start cell generation.
 
 Whilst the cells are generating, press Escape to return to the grid. This will reset the grid to your original cell pattern.
 
+## Example
+![This is an image](example.png)
+
 ## Code
 Written for Linux in C using the SDL2 library.
