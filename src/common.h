@@ -23,16 +23,16 @@ enum
     KEY_ANY
 };
 
-typedef void (*EVENT)(int);
+typedef void (*EVENT)(void);
 
 extern EVENT    Ticker;
 
 extern int      gameKey;
 
 void WorldCellPosChange(int, int);
-void WorldGenerate(int);
+void WorldGenerate(void);
 void WorldResponder(void);
-void WorldTicker(int);
+void WorldTicker(void);
 void WorldDrawer(void);
 void WorldCreate(void);
 

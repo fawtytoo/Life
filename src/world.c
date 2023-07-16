@@ -55,13 +55,13 @@ void WorldReset()
             grid_Array[0][y * WIDTH + x].cell = grid_Array[STARTGRID][y * WIDTH + x].cell;
 }
 
-void WorldGenerate(int ticks)
+void WorldGenerate()
 {
     CELL        *old, *new;
     int         pos, state;
     int         count;
 
-    cell_Ticks += ticks;
+    cell_Ticks += SystemTicks();
     if (cell_Ticks < 100)
         return;
 
@@ -151,9 +151,9 @@ void WorldResponder()
     grid_Array[STARTGRID][cell_Pos].flash = 1;
 }
 
-void WorldTicker(int ticks)
+void WorldTicker()
 {
-    cell_Ticks += ticks;
+    cell_Ticks += SystemTicks();
     if (cell_Ticks < 500)
         return;
 

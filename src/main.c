@@ -24,7 +24,7 @@ int main()
                 WorldResponder();
         }
 
-        Ticker(SystemTicks());
+        Ticker();
         WorldDrawer();
         SystemUpdate();
     }
