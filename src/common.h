@@ -10,13 +10,6 @@
 
 enum
 {
-    GA_NOTHING,
-    GA_GENERATE,
-    GA_CREATE
-};
-
-enum
-{
     KEY_NONE,
     KEY_LEFT,
     KEY_RIGHT,
@@ -30,7 +23,9 @@ enum
     KEY_ANY
 };
 
-extern int          game_Action;
+typedef void (*EVENT)(int);
+
+extern EVENT    Ticker;
 
 void WorldCellPosChange(int, int);
 void WorldGenerate(int);

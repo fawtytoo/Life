@@ -97,7 +97,7 @@ void WorldResponder(int key)
             WorldReset();
             grid_Index = STARTGRID;
             cell_Ticks = 0;
-            game_Action = GA_CREATE;
+            Ticker = WorldTicker;
         }
 
         return;
@@ -107,13 +107,13 @@ void WorldResponder(int key)
     {
         cell_Ticks = 0;
         grid_Index = 0;
-        game_Action = GA_GENERATE;
+        Ticker = WorldGenerate;
         return;
     }
     else if (key == KEY_CLEAR)
     {
         WorldClear();
-        game_Action = GA_CREATE;
+        Ticker = WorldTicker;
         return;
     }
 
