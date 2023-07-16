@@ -19,10 +19,7 @@ int main()
     {
         while (SystemEvent(&gameKey))
         {
-            if (gameKey == KEY_QUIT)
-                gameRunning = 0;
-            else if (gameKey != KEY_NONE)
-                Responder();
+            Responder();
         }
 
         Ticker();

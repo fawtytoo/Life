@@ -62,7 +62,7 @@ int SystemEvent(int *key)
         break;
 
       case SDL_QUIT:
-        *key = KEY_QUIT;
+        gameRunning = 0;
         return 1;
 
       default:

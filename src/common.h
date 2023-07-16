@@ -19,7 +19,6 @@ enum
     KEY_START,
     KEY_STOP,
     KEY_CLEAR,
-    KEY_QUIT,
     KEY_ANY
 };
 
@@ -28,6 +27,7 @@ typedef void (*EVENT)(void);
 extern EVENT    Ticker;
 extern EVENT    Responder;
 
+extern int      gameRunning;
 extern int      gameKey;
 
 void WorldCellPosChange(int, int);
