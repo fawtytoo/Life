@@ -16,8 +16,7 @@ typedef struct
     int         flash;
 } CELL;
 
-int         grid_Width, grid_Height;
-CELL        *grid_Array[NUMGRIDS];
+CELL        grid_Array[NUMGRIDS][WIDTH * HEIGHT];
 int         grid_Index;
 int         cell_Pos, cell_Ticks, cell_Flash;
 
@@ -34,7 +33,7 @@ void WorldCellPosChange(int x, int y)
         return;
 
     grid_Array[STARTGRID][cell_Pos].flash = 0;
-    cell_Pos = y * grid_Width + x;
+    cell_Pos = y * WIDTH + x;
     grid_Array[STARTGRID][cell_Pos].flash = 1;
 }
 
@@ -43,7 +42,7 @@ void WorldClear()
     int         grid, pos;
 
     for (grid = 0; grid < NUMGRIDS; grid++)
-        for (pos = 0; pos < grid_Width * grid_Height; pos++)
+        for (pos = 0; pos < WIDTH * HEIGHT; pos++)
             grid_Array[grid][pos].cell = 0;
 }
 
@@ -51,9 +50,9 @@ void WorldReset()
 {
     int         x, y;
 
-    for (y = 0; y < grid_Height; y++)
-        for (x = 0; x < grid_Width; x++)
-            grid_Array[0][y * grid_Width + x].cell = grid_Array[STARTGRID][y * grid_Width + x].cell;
+    for (y = 0; y < HEIGHT; y++)
+        for (x = 0; x < WIDTH; x++)
+            grid_Array[0][y * WIDTH + x].cell = grid_Array[STARTGRID][y * WIDTH + x].cell;
 }
 
 void WorldGenerate(int ticks)
@@ -71,7 +70,7 @@ void WorldGenerate(int ticks)
     old = grid_Array[grid_Index];
     new = grid_Array[1 - grid_Index];
 
-    for (pos = 0; pos < grid_Width * grid_Height; pos++)
+    for (pos = 0; pos < WIDTH * HEIGHT; pos++)
     {
         count = old[old[pos].dir[0]].cell;
         count += old[old[pos].dir[1]].cell;
@@ -169,7 +168,7 @@ void WorldDrawer()
 
     grid = grid_Array[grid_Index];
 
-    for (pos = 0; pos < grid_Width * grid_Height; pos++)
+    for (pos = 0; pos < WIDTH * HEIGHT; pos++)
     {
         if (grid_Index == STARTGRID)
             SystemDraw(grid[pos].x, grid[pos].y, grid[pos].flash & cell_Flash, 0);
@@ -183,10 +182,10 @@ void WorldSetupGrid(CELL *grid)
     int         x, y, pos;
     int         dir, cx, cy;
 
-    for (y = 0; y < grid_Height; y++)
-        for (x = 0; x < grid_Width; x++)
+    for (y = 0; y < HEIGHT; y++)
+        for (x = 0; x < WIDTH; x++)
         {
-            pos = y * grid_Width + x;
+            pos = y * WIDTH + x;
             grid[pos].x = x;
             grid[pos].y = y;
 
@@ -197,42 +196,30 @@ void WorldSetupGrid(CELL *grid)
                 cx = x + cell_Dir[dir][0];
                 cy = y + cell_Dir[dir][1];
                 if (cx == -1)
-                    cx = grid_Width - 1;
-                else if (cx == grid_Width)
+                    cx = WIDTH - 1;
+                else if (cx == WIDTH)
                     cx = 0;
 
                 if (cy == -1)
-                    cy = grid_Height - 1;
-                else if (cy == grid_Height)
+                    cy = HEIGHT - 1;
+                else if (cy == HEIGHT)
                     cy = 0;
 
-                grid[pos].dir[dir] = cy * grid_Width + cx;
+                grid[pos].dir[dir] = cy * WIDTH + cx;
             }
         }
-}
-
-void WorldDestroy()
-{
-    int         g;
-
-    for (g = 0; g < NUMGRIDS; g++)
-        free(grid_Array[g]);
 }
 
 void WorldCreate()
 {
     int         g;
 
-    grid_Width = WIDTH / CELLSIZE;
-    grid_Height = HEIGHT / CELLSIZE;
-
     for (g = 0; g < NUMGRIDS; g++)
     {
-        grid_Array[g] = malloc(grid_Width * grid_Height * sizeof(CELL));
         WorldSetupGrid(grid_Array[g]);
     }
 
-    cell_Pos = grid_Height * grid_Width / 2 + grid_Width / 2;
+    cell_Pos = WIDTH * HEIGHT / 2 + WIDTH / 2;
     cell_Ticks = 0;
     cell_Flash = 0;
 

@@ -62,7 +62,6 @@ int main()
         SystemUpdate();
     }
 
-    WorldDestroy();
     SystemQuit();
 
     return 0;

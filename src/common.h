@@ -3,10 +3,10 @@
 #ifndef __COMMON__
 #define __COMMON__
 
-#define WIDTH           640
-#define HEIGHT          480
+#define WIDTH       80
+#define HEIGHT      60
 
-#define CELLSIZE        8
+#define CELLSIZE    8
 
 enum
 {
@@ -37,7 +37,6 @@ void WorldGenerate(int);
 void WorldResponder(int);
 void WorldTicker(int);
 void WorldDrawer(void);
-void WorldDestroy(void);
 void WorldCreate(void);
 
 #endif

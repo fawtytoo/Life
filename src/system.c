@@ -131,7 +131,7 @@ void SystemInit()
 {
     SDL_Init(SDL_INIT_VIDEO);
 
-    sdl_Window = SDL_CreateWindow("Life", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, 0);
+    sdl_Window = SDL_CreateWindow("Life", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH * CELLSIZE, HEIGHT * CELLSIZE, 0);
     sdl_Surface = SDL_GetWindowSurface(sdl_Window);
 }
 
