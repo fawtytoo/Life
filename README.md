@@ -21,4 +21,4 @@ Whilst the cells are generating, press Escape to return to the grid. This will r
 ![This is an image](example.png)
 
 ## Code
-Written for Linux in C using the SDL2 library.
+Written for Linux in C using the SDL library.
