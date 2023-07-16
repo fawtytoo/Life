@@ -6,6 +6,7 @@
 int     gameRunning = 1;
 
 EVENT   Ticker = WorldTicker;
+EVENT   Responder = WorldCreateResponder;
 
 int     gameKey;
 
@@ -21,7 +22,7 @@ int main()
             if (gameKey == KEY_QUIT)
                 gameRunning = 0;
             else if (gameKey != KEY_NONE)
-                WorldResponder();
+                Responder();
         }
 
         Ticker();

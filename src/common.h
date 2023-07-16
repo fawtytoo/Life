@@ -26,12 +26,13 @@ enum
 typedef void (*EVENT)(void);
 
 extern EVENT    Ticker;
+extern EVENT    Responder;
 
 extern int      gameKey;
 
 void WorldCellPosChange(int, int);
 void WorldGenerate(void);
-void WorldResponder(void);
+void WorldCreateResponder(void);
 void WorldTicker(void);
 void WorldDrawer(void);
 void WorldCreate(void);

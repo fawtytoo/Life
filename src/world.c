@@ -88,26 +88,26 @@ void WorldGenerate()
     grid_Index = 1 - grid_Index;
 }
 
-void WorldResponder()
+void WorldGenerateResponder()
 {
-    if (grid_Index != STARTGRID) // the world is generating
+    if (gameKey == KEY_STOP)
     {
-        if (gameKey == KEY_STOP)
-        {
-            WorldReset();
-            grid_Index = STARTGRID;
-            cell_Ticks = 0;
-            Ticker = WorldTicker;
-        }
-
-        return;
+        WorldReset();
+        grid_Index = STARTGRID;
+        cell_Ticks = 0;
+        Ticker = WorldTicker;
+        Responder = WorldCreateResponder;
     }
+}
 
+void WorldCreateResponder()
+{
     if (gameKey == KEY_START)
     {
         cell_Ticks = 0;
         grid_Index = 0;
         Ticker = WorldGenerate;
+        Responder = WorldGenerateResponder;
         return;
     }
     else if (gameKey == KEY_CLEAR)
