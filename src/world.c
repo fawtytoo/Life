@@ -88,11 +88,11 @@ void WorldGenerate(int ticks)
     grid_Index = 1 - grid_Index;
 }
 
-void WorldResponder(int key)
+void WorldResponder()
 {
     if (grid_Index != STARTGRID) // the world is generating
     {
-        if (key == KEY_STOP)
+        if (gameKey == KEY_STOP)
         {
             WorldReset();
             grid_Index = STARTGRID;
@@ -103,21 +103,21 @@ void WorldResponder(int key)
         return;
     }
 
-    if (key == KEY_START)
+    if (gameKey == KEY_START)
     {
         cell_Ticks = 0;
         grid_Index = 0;
         Ticker = WorldGenerate;
         return;
     }
-    else if (key == KEY_CLEAR)
+    else if (gameKey == KEY_CLEAR)
     {
         WorldClear();
         Ticker = WorldTicker;
         return;
     }
 
-    if (key == KEY_SPACE)
+    if (gameKey == KEY_SPACE)
     {
         grid_Array[STARTGRID][cell_Pos].cell ^= 1;
         grid_Array[0][cell_Pos].cell ^= 1;
@@ -126,7 +126,7 @@ void WorldResponder(int key)
 
     grid_Array[STARTGRID][cell_Pos].flash = 0;
 
-    switch (key)
+    switch (gameKey)
     {
       case KEY_LEFT:
         cell_Pos = grid_Array[STARTGRID][cell_Pos].dir[6];

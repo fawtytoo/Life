@@ -27,9 +27,11 @@ typedef void (*EVENT)(int);
 
 extern EVENT    Ticker;
 
+extern int      gameKey;
+
 void WorldCellPosChange(int, int);
 void WorldGenerate(int);
-void WorldResponder(int);
+void WorldResponder(void);
 void WorldTicker(int);
 void WorldDrawer(void);
 void WorldCreate(void);

@@ -7,21 +7,21 @@ int     gameRunning = 1;
 
 EVENT   Ticker = WorldTicker;
 
+int     gameKey;
+
 int main()
 {
-    int         key;
-
     SystemInit();
     WorldCreate();
 
     while (gameRunning)
     {
-        while (SystemEvent(&key))
+        while (SystemEvent(&gameKey))
         {
-            if (key == KEY_QUIT)
+            if (gameKey == KEY_QUIT)
                 gameRunning = 0;
-            else if (key != KEY_NONE)
-                WorldResponder(key);
+            else if (gameKey != KEY_NONE)
+                WorldResponder();
         }
 
         Ticker(SystemTicks());
